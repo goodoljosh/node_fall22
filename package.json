@@ -1,0 +1,22 @@
+{
+  "name": "node_fall22",
+  "version": "1.0.0",
+  "description": "in cless demp",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goodoljosh/node_fall22.git"
+  },
+  "author": "Josh Findley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/goodoljosh/node_fall22/issues"
+  },
+  "homepage": "https://github.com/goodoljosh/node_fall22#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
