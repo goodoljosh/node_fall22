@@ -16,7 +16,7 @@ db.on('error' , console.error.bind(console, "MongoDb connection error: "))
 app.get('/', function(req,res){
     res.render('todo.ejs');
  })
-
+//Creates item in DB
  app.post('/', (req, res) =>  {
     let newTodo = new Todo({
         todo: req.body.content,
@@ -26,10 +26,28 @@ app.get('/', function(req,res){
         if(err){
             res.json({"Error:" : err})
         } else {
-            res.json({"Status: ": "Successful", "ObjectID": todo.id})
+            res.json({"Status: ": "Successful", "ObjectId": todo.id})
         }
     })
  })
+//Modifies Item in DB
+ app.put('/', (req, res) => {
+    let id = req.body.check;
+    let err = {}
+ //   if(){
+
+//    } else if{
+
+//    }
+ //   if(err){
+ //      res.json({"Error:" : err})
+ //   } else {
+//        res.json({"Status: ": "Successful"})
+
+//    }
+ })
+
+ //app.delete()
 
 app.listen(3000,function(){
     console.log('App listening on port 3000');
