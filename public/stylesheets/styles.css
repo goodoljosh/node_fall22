@@ -8,6 +8,7 @@
  body{
      background-color: darksalmon;
  }
+
  .todo-container{
      color:white;
      position: absolute;
@@ -88,4 +89,10 @@
 
  .todo-list-item .strike-through{
     text-decoration: line-through;
+ }
+
+ .center{
+    display: block;
+    margin-right: auto;
+    margin-left:auto;
  }
