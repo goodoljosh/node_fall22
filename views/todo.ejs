@@ -7,6 +7,17 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!---link href="https://use.fontawesome.com/release/v5.8.2/css/all.css" rel="stylesheet"/> -->
+  <script>
+    function done(todoTag){
+     const id = todoTag.getAttribute("data-todoId");
+     console.log(id)
+    }
+    function deleteItem(todoTag){
+     const id = todoTag.getAttribute("data-todoId");
+     console.log(id)
+    }
+    
+  </script>
 </head>
 <body>
   <div class="todo-container">
@@ -26,12 +37,13 @@
                 <div class="todo-list-item-name">
                   <%= todo.todo %>
                 </div> 
-                <button  class="edit" onClick="">
+                <button data-todoId="<%= todo._id%>"  class="remove" onClick="done(this)">
                   <i class="fa fa-pencil"></i>
+              </button>
+                <button  data-todoId="<%= todo._id%>" class="edit" onClick="deleteItem(this)">
+                  <i class="fa fa-trash"></i>
                 </button>
-                <button  class="remove" onClick="">
-                    <i class="fa fa-times"></i>
-                </button>
+
             </li>
          <% }) %>
       </ul>
