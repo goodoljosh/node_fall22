@@ -13,11 +13,10 @@
        console.log(_id)
        fetch('/', {
         method: 'PUT',
-        body: JSON.stringify({ id: _id})
-       })
-       .then((response) => response.json())
-       .then((result) => {
-        console.log('Success: ', result);
+        body: JSON.stringify({ id: `${_id}`}),
+        headers: {
+            "Content-Type": "application/json",
+        }
        })
        .catch((error) => {
         console.error('Error:',error);
@@ -45,9 +44,14 @@
       <ul class="todo-list">
           <% todoList.forEach(function(todo){ %>
             <li class="todo-list-item">
-                <div class="todo-list-item-name">
+              <% if(todo.done){ %>
+                <div class="todo-list-item-name strike-through">
                   <%= todo.todo %>
                 </div> 
+              <% } else { %>
+                <div class="todo-list-item-name">
+                 <%= todo.todo %>
+              <% } %>
                 <button data-todoId="<%= todo._id%>"  class="remove" onClick="done(this)">
                   <i class="fa fa-pencil"></i>
               </button>
