@@ -14,7 +14,14 @@ db.on('error' , console.error.bind(console, "MongoDb connection error: "))
 
 
 app.get('/', function(req,res){
-    res.render('todo.ejs');
+    Todo.find(function(err, todo){
+        console.log(todo)
+        if(err){
+            res.json({"Error:" : err})
+        } else {
+            res.render("todo.ejs", {todoList: todo});
+        }
+    })
  })
 //Creates item in DB
  app.post('/', (req, res) =>  {
@@ -26,7 +33,7 @@ app.get('/', function(req,res){
         if(err){
             res.json({"Error:" : err})
         } else {
-            res.json({"Status: ": "Successful", "ObjectId": todo.id})
+            res.redirect('/');
         }
     })
  })
@@ -34,21 +41,59 @@ app.get('/', function(req,res){
  app.put('/', (req, res) => {
     let id = req.body.check;
     let err = {}
- //   if(){
+    if(typeof id === "string"){
+       Todo.updateOne({_id: id}, {done: true}, function(error){
+           if(error){
+            err = error
+           }
+       })
+    } else if(typeof id === "object"){
+       id.forEach(ID => {
+        Todo.updateOne({_id: ID}, {done: true}, function(error){
+            if(error){
+             err = error
+            }
+        })
+       })
+    }
+    if(err){
+       res.json({"Error:" : err})
+    } else {
+        res.redirect('/');
 
-//    } else if{
-
-//    }
- //   if(err){
- //      res.json({"Error:" : err})
- //   } else {
-//        res.json({"Status: ": "Successful"})
-
-//    }
+    }
  })
 
- //app.delete()
+ app.delete('/', (req, res) => {
+    let id = req.body.check;
+    let err = {}
+    if(typeof id === "string"){
+       Todo.deleteOne({_id: id}, function(error){
+           if(error){
+            err = error
+           }
+       })
+    } else if(typeof id === "object"){
+       id.forEach(ID => {
+        Todo.deleteOne({_id: ID}, function(error){
+            if(error){
+             err = error
+            }
+        })
+       })
+    }
+    if(err){
+       res.json({"Error:" : err})
+    } else {
+        res.redirect('/');
+
+    }
+ })
 
 app.listen(3000,function(){
     console.log('App listening on port 3000');
 })
+
+
+//3 tasks
+//users should be able to mark off all tasks at once and delete them too

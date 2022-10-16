@@ -17,24 +17,23 @@
       <form action="/" method="POST" class="todo-header">
           <input type="text" name="content" />
           <button type="submit">
-            Submit
             <i class="fa fa-plus"></i>
           </button>
       </form>
       <ul class="todo-list">
-        <li class="todo-list-item">
-            <div class="todo-list-item-name">
-              First task
-            </div> 
-            <a href="" class="edit">
-              Edit
-              <i class="fa fa-pencil"></i>
-            </a>
-              <a href="" class="remove">
-                Remove
-                <i class="fa fa-times"></i>
-            </a>
-        </li>
+          <% todoList.forEach(function(todo){ %>
+            <li class="todo-list-item">
+                <div class="todo-list-item-name">
+                  <%= todo.todo %>
+                </div> 
+                <button  class="edit" onClick="">
+                  <i class="fa fa-pencil"></i>
+                </button>
+                <button  class="remove" onClick="">
+                    <i class="fa fa-times"></i>
+                </button>
+            </li>
+         <% }) %>
       </ul>
      </div>
    </div>
