@@ -9,14 +9,25 @@
   <!---link href="https://use.fontawesome.com/release/v5.8.2/css/all.css" rel="stylesheet"/> -->
   <script>
     function done(todoTag){
-     const id = todoTag.getAttribute("data-todoId");
-     console.log(id)
+       const _id = todoTag.getAttribute("data-todoId");
+       console.log(_id)
+       fetch('/', {
+        method: 'PUT',
+        body: JSON.stringify({ id: _id})
+       })
+       .then((response) => response.json())
+       .then((result) => {
+        console.log('Success: ', result);
+       })
+       .catch((error) => {
+        console.error('Error:',error);
+       })
     }
     function deleteItem(todoTag){
      const id = todoTag.getAttribute("data-todoId");
      console.log(id)
     }
-    
+
   </script>
 </head>
 <body>

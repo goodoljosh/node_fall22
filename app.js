@@ -2,6 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose')
 var app = express();
 
+
 app.use('/static', express.static("public"));
 app.use(express.urlencoded({extended: true}))
 app.set("view engine","ejs");
@@ -39,19 +40,22 @@ app.get('/', function(req,res){
  })
 //Modifies Item in DB
  app.put('/', (req, res) => {
-    let id = req.body.check;
+    let id = req.body.id;
     let err = {}
+    console.log(req.body)
     if(typeof id === "string"){
        Todo.updateOne({_id: id}, {done: true}, function(error){
            if(error){
+            console.log(error)
             err = error
            }
        })
     } else if(typeof id === "object"){
        id.forEach(ID => {
-        Todo.updateOne({_id: ID}, {done: true}, function(error){
+        Todo.updateOne({_id: id}, {done: true}, function(error){
             if(error){
              err = error
+             console.log(error)
             }
         })
        })
