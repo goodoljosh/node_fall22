@@ -35,6 +35,7 @@ app.get('/', function(req,res){
     //api call by comic number https://xkcd.com/614/info.0.json number (614) randomly generated
     //min 1 max 2682
  })
+ 
 //Creates item in DB
  app.post('/create', (req, res) =>  {
     let newTodo = new Todo({
